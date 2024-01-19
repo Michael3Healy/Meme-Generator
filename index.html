@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Meme Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>Amazing Meme Generator</header>
+    <form action="" id="meme-form">
+        <label for="image">Add Image URL: </label>
+        <label for="top-text">Add Text to Top: </label>
+        <label for="bottom-text">Add Text to Bottom: </label>
+        <label for="font-size">Font Size (px): </label>
+        <input type="url" name="image" id="image" placeholder="What image do you want for your meme?">
+        <input type="text" name="top-text" id="top-text" placeholder="What will the top of your meme say?">
+        <input type="text" name="bottom-text" id="bottom-text" placeholder="What will the bottom of your meme say?">
+        <input type="number" name="font-size" id="font-size" placeholder="What size do you want the text of your meme to be?">
+        <button>Create Meme!</button>
+    </form>
+    <div id="meme-list">
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
