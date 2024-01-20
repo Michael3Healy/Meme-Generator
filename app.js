@@ -1,10 +1,14 @@
+
 const imageInput = document.querySelector('#image');
 const topTextInput = document.querySelector('#top-text');
 const bottomTextInput = document.querySelector('#bottom-text');
 const fontSizeInput = document.querySelector('#font-size');
 const form = document.querySelector('#meme-form');
+
+//Contains all of the meme divs
 const list = document.querySelector('#meme-list');
 
+//Checks that every field has been filled out
 function hasInputValue (input) {
     if (input.value !== '') {
         return true;
@@ -12,6 +16,7 @@ function hasInputValue (input) {
     return false;
 }
 
+//Resets input values after form submission
 function resetInput (inputs) {
     for (let input of inputs) {
         input.value = '';
@@ -21,7 +26,11 @@ function resetInput (inputs) {
 form.addEventListener('submit', function (e) {
     e.preventDefault();
 
+
+    //Ensure all fields in the form have been filled out
     if (hasInputValue(imageInput) && hasInputValue(topTextInput) && hasInputValue(bottomTextInput) && hasInputValue(fontSizeInput)) {
+        
+        //Create div with child elements of image, remove button, and text with their associated CSS classes
         const meme = document.createElement('div');
         meme.setAttribute('class', 'meme');
         list.append(meme)
@@ -33,7 +42,6 @@ form.addEventListener('submit', function (e) {
         removeButton.setAttribute('class', 'button-overlay');
         removeButton.innerHTML = '<img width="32" height="32" src="http://tinyurl.com/yvfpll9n" alt="trash"/>';
         
-
         const topText = document.createElement('h1');
         topText.innerText = topTextInput.value;
         topText.setAttribute('class', 'top-text');
@@ -53,6 +61,8 @@ form.addEventListener('submit', function (e) {
     }
 })
 
+
+//Remove meme if button/trash icon is selected
 list.addEventListener('click', function (e) {
     const trashIcon = e.target.closest('img[src="http://tinyurl.com/yvfpll9n"]')
     if (e.target.tagName === 'BUTTON') {
