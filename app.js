@@ -31,10 +31,12 @@ form.addEventListener('submit', function (e) {
         const topText = document.createElement('h1');
         topText.innerText = topTextInput.value;
         topText.setAttribute('class', 'top-text');
+        topText.style.fontSize = fontSizeInput.value + 'px';
 
         const bottomText = document.createElement('h1');
         bottomText.innerText = bottomTextInput.value;
         bottomText.setAttribute('class', 'bottom-text');
+        bottomText.style.fontSize = fontSizeInput.value + 'px';
 
         meme.append(memeImage, topText, bottomText);
 
