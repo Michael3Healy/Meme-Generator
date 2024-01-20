@@ -18,34 +18,6 @@ function resetInput (inputs) {
     }
 }
 
-const storedMemes = JSON.parse(localStorage.getItem('creations')) || [];
-
-for (let meme of storedMemes) {
-    let newMeme = document.createElement('div');
-    newMeme.setAttribute('class', 'meme');
-    list.append(meme)
-
-    const memeImage = document.createElement('img');
-    memeImage.setAttribute('src', meme.meme);
-
-    const removeButton = document.createElement('button');
-    removeButton.setAttribute('class', 'button-overlay');
-    removeButton.innerHTML = '<img width="32" height="32" src="http://tinyurl.com/yvfpll9n" alt="trash"/>';
-
-    const topText = document.createElement('h1');
-    topText.innerText = meme.tText;
-    topText.setAttribute('class', 'top-text');
-    topText.style.fontSize = meme.fontSize;
-
-    const bottomText = document.createElement('h1');
-    bottomText.innerText = bText;
-    bottomText.setAttribute('class', 'bottom-text');
-    bottomText.style.fontSize = meme.fontSize;
-
-    newMeme.append(memeImage, removeButton, topText, bottomText);
-
-}
-
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (hasInputValue(imageInput) && hasInputValue(topTextInput) && hasInputValue(bottomTextInput) && hasInputValue(fontSizeInput)) {
@@ -72,9 +44,6 @@ form.addEventListener('submit', function (e) {
         bottomText.style.fontSize = fontSizeInput.value + 'px';
 
         meme.append(memeImage, removeButton, topText, bottomText);
-
-        storedMemes.push({ meme: memeImage.getAttribute('src'), tText: topText.innerText, bText: bottomText.innerText, fontSize: topText.style.fontSize});
-        localStorage.setItem('creations', JSON.stringify(storedMemes));
 
         resetInput([imageInput, topTextInput, bottomTextInput]);
 
