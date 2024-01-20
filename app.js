@@ -20,6 +20,7 @@ function resetInput (inputs) {
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
+
     if (hasInputValue(imageInput) && hasInputValue(topTextInput) && hasInputValue(bottomTextInput) && hasInputValue(fontSizeInput)) {
         const meme = document.createElement('div');
         meme.setAttribute('class', 'meme');
@@ -53,7 +54,7 @@ form.addEventListener('submit', function (e) {
 })
 
 list.addEventListener('click', function (e) {
-    const trashIcon = document.querySelector('img[src="http://tinyurl.com/yvfpll9n"]')
+    const trashIcon = e.target.closest('img[src="http://tinyurl.com/yvfpll9n"]')
     if (e.target.tagName === 'BUTTON') {
         e.target.parentElement.remove();
     } else if (e.target === trashIcon) {
