@@ -1,21 +1,26 @@
+
 const imageInput = document.querySelector('#image');
 const topTextInput = document.querySelector('#top-text');
 const bottomTextInput = document.querySelector('#bottom-text');
 const fontSizeInput = document.querySelector('#font-size');
 const form = document.querySelector('#meme-form');
+
+//Contains all of the meme divs
 const list = document.querySelector('#meme-list');
 
-function hasInputValue(input) {
-	if (input.value !== '') {
-		return true;
-	}
-	return false;
+//Checks that every field has been filled out
+function hasInputValue (input) {
+    if (input.value !== '') {
+        return true;
+    }
+    return false;
 }
 
-function resetInput(inputs) {
-	for (let input of inputs) {
-		input.value = '';
-	}
+//Resets input values after form submission
+function resetInput (inputs) {
+    for (let input of inputs) {
+        input.value = '';
+    }
 }
 
 const storedMemes = JSON.parse(localStorage.getItem('creations')) || [];
@@ -48,19 +53,19 @@ for (let meme of storedMemes) {
 }
 
 form.addEventListener('submit', function (e) {
-	e.preventDefault();
-	if (
-		hasInputValue(imageInput) &&
-		hasInputValue(topTextInput) &&
-		hasInputValue(bottomTextInput) &&
-		hasInputValue(fontSizeInput)
-	) {
-		const meme = document.createElement('div');
-		meme.setAttribute('class', 'meme');
-	
+    e.preventDefault();
 
-		const memeImage = document.createElement('img');
-		memeImage.setAttribute('src', imageInput.value);
+
+    //Ensure all fields in the form have been filled out
+    if (hasInputValue(imageInput) && hasInputValue(topTextInput) && hasInputValue(bottomTextInput) && hasInputValue(fontSizeInput)) {
+        
+        //Create div with child elements of image, remove button, and text with their associated CSS classes
+        const meme = document.createElement('div');
+        meme.setAttribute('class', 'meme');
+        list.append(meme)
+
+        const memeImage = document.createElement('img')
+        memeImage.setAttribute('src', imageInput.value);
 
 		const removeButton = document.createElement('button');
 		removeButton.setAttribute('class', 'button-overlay');
@@ -94,6 +99,8 @@ form.addEventListener('submit', function (e) {
 	}
 });
 
+
+//Remove meme if button/trash icon is selected
 list.addEventListener('click', function (e) {
 	const trashIcon = e.target.closest(
 		'img[src="http://tinyurl.com/yvfpll9n"]'
